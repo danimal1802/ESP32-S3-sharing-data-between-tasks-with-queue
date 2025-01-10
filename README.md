@@ -14,7 +14,7 @@ This setup has 5 total tasks
 
 This specific project by itself is not accomplishing much that cannot be achieved with a single loop program.  
 
-The value of this example provides the code for having multiple tasks running in realtime that can run independently. using queues to pass values between independent tasks - while avoiding the use of global variables.
+The value of this example provides the code for having multiple tasks running in realtime that can run independently and non-blocking while having the ability to pass information between tasks via queues.  Queues are better practice over global variables w/ semaphores.
 
 Improvements needed: 
 
