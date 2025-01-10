@@ -2,7 +2,7 @@ This program serves as a baseline code for running multiple parallel tasks on a 
 
 This setup has 5 total tasks
 
-(1) Led1 blinking at a specified rate different from task2 and task3
+(1) Led1 blinking at a specified rate different from task2 and task3 - pin assignment and duration of blink-rate is self documenting in the code
 
 (2) Led2 blinking at a specified rate different from task1 and task3
 
@@ -22,4 +22,7 @@ Improvements needed:
 (d) determine if both the <Arduino.h> and the <FreeRTOS.h files> are required or one or the other is sufficient - this is difficult to understand based on other examples on the web
 (e) (include motor controls) or other rotary switch inputs
 (f) measure / determine memory use and allocated mempry for each task.  Currently values are guesstimated
+(g) further error checking for queue setup / failure / retry
+
+
 
