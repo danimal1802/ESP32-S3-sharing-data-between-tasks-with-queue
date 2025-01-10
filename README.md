@@ -29,6 +29,6 @@ Improvements needed:
 (e) (include motor controls) or other rotary switch inputs
 (f) measure / determine memory use and allocated mempry for each task.  Currently values are guesstimated
 (g) further error checking for queue setup / failure / retry
-
+(h) further understand the crossover of command differences for FreeRTOS such as delay vs vTaskDelay ...  https://www.freertos.org/Documentation/00-Overview
 
 
