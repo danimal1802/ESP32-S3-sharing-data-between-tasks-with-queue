@@ -21,7 +21,7 @@
 #include "lcdupdate.h"  // Sketch
 
 // Create a queue handle (global to main)
-static QueueHandle_t tempQueue = NULL;
+static QueueHandle_t tempQueue  = NULL;
 
 void setup() {
   Serial.begin(115200);
@@ -31,7 +31,7 @@ void setup() {
   Wire.begin();
 
   // Create the queue to hold up to 5 float values (the temperature)
-  tempQueue = xQueueCreate(5, sizeof(float));    
+  tempQueue  = xQueueCreate(2, sizeof(float));    
 
   xTaskCreatePinnedToCore(
       led1_sketch,  // Task function
