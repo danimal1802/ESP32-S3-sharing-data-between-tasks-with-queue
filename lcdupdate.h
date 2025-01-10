@@ -12,35 +12,40 @@
 // Create a 20x4 LCD object
 LiquidCrystal_I2C lcd(LCD_I2C_ADDRESS, 20, 4);
 
-// Initialize the LCD
-//lcd.init();     
-//lcd.backlight();  // Turn on the LCD backlight
-// Clear the display 
-//lcd.clear();
-
 float temp = 0.0f;
+float humidity = 0.0f;
 
 void lcdupdate_sketch(void *pvParameter) {
   // Cast the parameter to a QueueHandle_t
   QueueHandle_t tempQueue = (QueueHandle_t)pvParameter;
-  
+
+lcd.backlight();  // Turn on the LCD backlight
+lcd.clear();      // clear the display
   
   while (true) {
     // Wait indefinitely for a new temperature value
     if (xQueueReceive(tempQueue, &temp, portMAX_DELAY) == pdTRUE) {
-      Serial.print("DisplayTask -> Received temperature: ");
+      Serial.print("lcdupdate -> Received temperature: ");
       Serial.println(temp);
-
-      // Update the LCD
-      lcd.clear();
       lcd.setCursor(0, 0);
-      lcd.print("Temp: ");
       lcd.print(temp);
       lcd.print(" C");
-
-      // Short delay to allow other tasks to run
-      vTaskDelay(pdMS_TO_TICKS(100));
+      vTaskDelay(pdMS_TO_TICKS(100));  // short delay for other tasks to run
     } // close if
+
+    // Wait indefinitely for a new humidity value
+    if (xQueueReceive(tempQueue, &humidity, portMAX_DELAY) == pdTRUE) {
+      Serial.print("lcdupdate -> Received humidity: ");
+      Serial.println(humidity);
+      lcd.setCursor(9, 0);
+      lcd.print(humidity);
+      lcd.print(" %rH");
+      vTaskDelay(pdMS_TO_TICKS(100));  // short delay for other tasks to run
+    } // close if
+
+
+  vTaskDelay(pdMS_TO_TICKS(2000));
   } // close while
 }
  
+
