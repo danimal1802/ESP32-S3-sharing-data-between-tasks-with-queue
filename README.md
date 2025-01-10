@@ -1,5 +1,7 @@
 This program serves as a baseline code for running multiple parallel tasks on a single dual-core ESP32-S3
 
+For this project - the Arduino IDE (board manager 3) was used to program the ESP32-S3 and relies on a few other libraries (e.g. Wire.h) included with this IDE
+
 This setup has 5 total tasks
 
 (1) Led1 blinking at a specified rate different from task2 and task3 - pin assignment and duration of blink-rate is self documenting in the code
