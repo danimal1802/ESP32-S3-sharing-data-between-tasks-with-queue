@@ -12,7 +12,9 @@ This setup has 5 total tasks
 
 (5) a 2004A LCD display connected via I2C to the ESP32 (with external 5v power) and common ground to the USB 5V feed.  The 3.3v I2C signals from the ESP32-S3 are compatable signal levels to the display.  The display is set to show the temperature value from the queue and set to read the queue at a specified interval.
 
-This project by itself is not accomplishing much, but rather provides the code for using queues to pass values between independent tasks - while avoiding the use of global variables.
+This specific project by itself is not accomplishing much that cannot be achieved with a single loop program.  
+
+The value of this example provides the code for having multiple tasks running in realtime that can run independently. using queues to pass values between independent tasks - while avoiding the use of global variables.
 
 Improvements needed: 
 
