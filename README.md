@@ -12,7 +12,7 @@ This setup has 5 total tasks
 
 (4) a AHT20 temperature sensor connected to the ESP32 via the I2C (SDA/SCL) ports taking temperature and humidity readings at a specified interval
 
-(5) a 2004A LCD display connected via I2C to the ESP32 (with external 5v power) and common ground to the USB 5V feed.  The 3.3v I2C signals from the ESP32-S3 are compatable signal levels to the display.  The display is set to show the temperature value from the queue and set to read the queue at a specified interval.
+(5) a 2004A LCD display connected via I2C to the ESP32 (with external 5v power) and common ground to the USB 5V feed.  The 3.3v I2C signals from the ESP32-S3 are compatable signal levels to the display.  The display is set to show the temperature (C) and humidity values from the 2-deep queue and set to read the queue at a specified interval longer than the sensor read time (to avoid full queue and loss of 2-value sync).
 
 This specific project by itself is not accomplishing much that cannot be achieved with a single loop program.  
 
