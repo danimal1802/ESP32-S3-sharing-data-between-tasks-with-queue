@@ -16,6 +16,8 @@ This specific project by itself is not accomplishing much that cannot be achieve
 
 The value of this example provides the code for having multiple tasks running in realtime that can run independently and non-blocking while having the ability to pass information between tasks via queues.  Queues are better practice over global variables w/ semaphores.
 
+As the ESP32 is dual core, it is technically possible to use both cores.  For the moment, the tasks are all assigned to core1 as it is understood that core0 is used for Wifi and Bluetooth and other RTOS functionality and overcommitment of core0 can result in system-crashes. 
+
 Improvements needed: 
 
 (a) separate each of the tasks code into both a <file.h> and a <file.cpp> for best practice 
