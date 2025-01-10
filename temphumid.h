@@ -1,4 +1,3 @@
-
 #include <Wire.h>
 #include <Adafruit_AHTX0.h>
 #include "freertos/FreeRTOS.h"
@@ -47,12 +46,20 @@ void temphumid_sketch(void *pvParameter) {
 
       // Send the temperature to the queue
       if (xQueueSend(tempQueue, &temp.temperature, 0) == pdTRUE) {
-        Serial.print("MeasureTask -> Sent temperature: ");
+        Serial.print("temphumid -> Sent temperature: ");
         Serial.println(temp.temperature);
       } else {
         Serial.println("MeasureTask -> Queue is full, could not send data.");
       }
+      // Send the humidity to the queue
+      if (xQueueSend(tempQueue, &humidity.relative_humidity, 0) == pdTRUE) {
+        Serial.print("temphumid -> Sent humidity: ");
+        Serial.println(humidity.relative_humidity);
+      } else {
+        Serial.println("temphumid -> Queue is full, could not send data.");
+      }
 
-      vTaskDelay(pdMS_TO_TICKS(2000)); 
+
+      vTaskDelay(pdMS_TO_TICKS(3000)); 
     }
 }
