@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 #define LED_2_PIN 16
 
 void led2_sketch(void *parameter) {
