@@ -8,10 +8,11 @@
 // 
 
 // System libraries
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
+//#include "freertos/FreeRTOS.h"
+//#include "freertos/task.h"
+//#include "freertos/queue.h"
 #include <Wire.h>
+#include <Arduino.h>
 
 // Project libraries
 #include "led1.h"       // Sketch
@@ -19,19 +20,22 @@
 #include "led3.h"       // Sketch
 #include "temphumid.h"  // Sketch
 #include "lcdupdate.h"  // Sketch
+#include "tof.h"        // Sketch
 
-// Create a queue handle (global to main)
-static QueueHandle_t tempQueue  = NULL;
+// Create queues to handle task data exhcnages
+extern QueueHandle_t tempQueue  = NULL;
+extern QueueHandle_t tofQueue   = NULL;
 
 void setup() {
   Serial.begin(115200);
-  delay(100);
+  delay(500);
 
   // Initialize I2C (using default pins on ESP32-S3: SDA=GPIO20, SCL=GPIO21)
-  Wire.begin();
+  //Wire.begin();
 
   // Create the queue to hold up to 5 float values (the temperature)
-  tempQueue  = xQueueCreate(2, sizeof(float));    
+  tempQueue  = xQueueCreate(2, sizeof(float));  
+  tofQueue   = xQueueCreate(1, sizeof(float));  
 
   xTaskCreatePinnedToCore(
       led1_sketch,  // Task function
@@ -82,6 +86,18 @@ void setup() {
       NULL,               // Task handle, add one if you want control over the task (resume or suspend the task)
       1                   // Core to run the task on
   );
+
+  xTaskCreatePinnedToCore(
+      tof_sketch,   // Task function
+      "taskName",         // Task name
+      16192,              // Stack size
+      (void*)tofQueue,    // Task input parameters
+      1,                  // Task priority, be carefull when changing this
+      NULL,               // Task handle, add one if you want control over the task (resume or suspend the task)
+      1                   // Core to run the task on
+  );
+
+
 } // close setup
 
 void loop()
