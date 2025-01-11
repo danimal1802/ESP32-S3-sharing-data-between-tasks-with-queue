@@ -36,3 +36,26 @@ Improvements needed:
 (j) ~~rationalize and minimize library and includes for code~~
 
 
+  recommended settings in Arduino IDE
+
+Upload speed 921600
+
+USB Mode : Hardware CDC and JTAG
+
+USB CDC on Boot : Enabled
+
+USB Firmware MSC : disabled
+
+USB DFU on boot : disabled
+
+Upload Mode: UART0/Hardware CDC
+
+CPU frequency 240Mhz
+
+Flash Mode: QIO 80Mhz
+
+Flash size: 16MB
+
+Partition scheme: any should work
+
+PSRAM: OPI PSRAM
