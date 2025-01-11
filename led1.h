@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 #define LED_1_PIN 5
 
 void led1_sketch(void *parameter) {
@@ -12,6 +10,6 @@ void led1_sketch(void *parameter) {
     for (;;) {
         int led = digitalRead(LED_1_PIN);
         digitalWrite(LED_1_PIN, !led);
-        delay(400); // Allow other tasks to run, adjust as needed
+        delay(40); // Allow other tasks to run, adjust as needed
     }
 }
