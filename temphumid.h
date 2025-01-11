@@ -1,21 +1,18 @@
-#include <Wire.h>
 #include <Adafruit_AHTX0.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
-// Create an AHTX0 object (supports AHT10, AHT20, AHT21)
+
 Adafruit_AHTX0 aht;
+
 
 void temphumid_sketch(void *pvParameter) {
     // Setup start here
     //pinMode(LED_2_PIN, OUTPUT);
-    Serial.begin(115200); 
-    delay(100);  // Give time for the Serial to initialize
+    //Serial.begin(115200); 
+    //delay(100);  // Give time for the Serial to initialize
 
     // Initialize I2C communication
     // If your board uses different pins for SDA/SCL, specify them:
     // e.g.: Wire.begin(20, 21);
-    Wire.begin();
+    //Wire.begin();
     
     // Initialize the AHT20 sensor
     if (!aht.begin()) {
@@ -60,6 +57,6 @@ void temphumid_sketch(void *pvParameter) {
       }
 
 
-      vTaskDelay(pdMS_TO_TICKS(3000)); 
+      vTaskDelay(pdMS_TO_TICKS(100)); 
     }
 }
