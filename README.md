@@ -2,7 +2,7 @@ This program serves as a baseline code for running multiple parallel tasks on a 
 
 For this project - the Arduino IDE (board manager 3) was used to program the ESP32-S3 and relies on a few other libraries (e.g. Wire.h) included with this IDE
 
-This setup has 5 total tasks
+This setup has 6 total tasks
 
 (1) Led1 blinking at a specified rate different from task2 and task3 - pin assignment and duration of blink-rate is self documenting in the code
 
@@ -12,7 +12,9 @@ This setup has 5 total tasks
 
 (4) a AHT20 temperature sensor connected to the ESP32 via the I2C (SDA/SCL) ports taking temperature and humidity readings at a specified interval
 
-(5) a 2004A LCD display connected via I2C to the ESP32 (with external 5v power) and common ground to the USB 5V feed.  The 3.3v I2C signals from the ESP32-S3 are compatable signal levels to the display.  The display is set to show the temperature (C) and humidity values from the 2-deep queue and set to read the queue at a specified interval longer than the sensor read time (to avoid full queue and loss of 2-value sync).
+(5) a SSD1306 OLED display connected via I2C to the ESP32.  This replaces the earlier project iteration that used the 2004A LCD display that required an external 5v power supply and had occasional signal problems with 3.3 V SDA/SCL logic levels  The 3.3v I2C signals from the ESP32-S3 are in theory compatable signal levels to the LCD display but the behavior was intermittent.  The display is set to show the temperature (C) and humidity values from the 2-deep queue and set to read the queue at a specified interval longer than the sensor read time (to avoid full queue and loss of 2-value sync).  The display also shows the VL53L1X time-of=flight distance via a second queue. 
+
+(6) a VL53L1X time of flight laster sensor for measuring distance to an object
 
 This specific project by itself is not accomplishing much that cannot be achieved with a single loop program.  
 
@@ -23,8 +25,8 @@ As the ESP32 is dual core, it is technically possible to use both cores.  For th
 Improvements needed: 
 
 (a) separate each of the tasks code into both a <file.h> and a <file.cpp> for best practice 
-(b) modify the queue to permit humidity values to be exchanged instead of only temperature
-(c) adjust the LCD display to clear & update only the sections of the display that need to be updated when there is a change in temperature (or other, etc)
+(b) --modify the queue to permit also humidity values to be exchanged instead of only temperature--
+(c) --adjust the LCD display to clear & update only the sections of the display that need to be updated when there is a change in temperature (or other, etc)--
 (d) determine if both the <Arduino.h> and the <FreeRTOS.h files> are required or one or the other is sufficient - this is difficult to understand based on other examples on the web
 (e) (include motor controls) or other rotary switch inputs
 (f) measure / determine memory use and allocated mempry for each task.  Currently values are guesstimated
