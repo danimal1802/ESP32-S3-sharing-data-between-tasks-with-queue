@@ -25,12 +25,14 @@ As the ESP32 is dual core, it is technically possible to use both cores.  For th
 Improvements needed: 
 
 (a) separate each of the tasks code into both a <file.h> and a <file.cpp> for best practice 
-(b) --modify the queue to permit also humidity values to be exchanged instead of only temperature--
-(c) --adjust the LCD display to clear & update only the sections of the display that need to be updated when there is a change in temperature (or other, etc)--
+(b) ~~modify the queue to permit also humidity values to be exchanged instead of only temperature~~
+(c) ~~adjust the LCD display to clear & update only the sections of the display that need to be updated when there is a change in temperature (or other, etc)!!
 (d) determine if both the <Arduino.h> and the <FreeRTOS.h files> are required or one or the other is sufficient - this is difficult to understand based on other examples on the web
 (e) (include motor controls) or other rotary switch inputs
 (f) measure / determine memory use and allocated mempry for each task.  Currently values are guesstimated
 (g) further error checking for queue setup / failure / retry
 (h) further understand the crossover of command differences for FreeRTOS such as delay vs vTaskDelay ...  https://www.freertos.org/Documentation/00-Overview
+(i) ~~include multiple queues and with different lengths and purposes~~
+(j) ~~rationalize and minimize library and includes for code~~
 
 
